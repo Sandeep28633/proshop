@@ -2,5 +2,6 @@ import Header from './Header';
 import Footer from './Footer';
 import Product from './Product';
 import Ratings from './Ratings';
-
-export {Header,Footer,Product,Ratings}
+import Message from './Message';
+import Loader from './Loader';
+export {Header,Footer,Product,Ratings,Message,Loader}

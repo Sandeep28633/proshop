@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
     const products = await Product.find({})
     res.send(products)
   } catch (error) {
-    res.status(400).send()
+    res.status(400).send({message:'Some error occured'})
   }
 })
 
@@ -17,10 +17,10 @@ router.get('/:id', async (req, res) => {
     if (product) {
       return res.send(product)
     }
-    res.status(400).send({ message: 'Product not found' })
+    throw new Error('Product not found')
   } catch (error) {
-    res.status(400).send({ message: 'Product not found' })
-  }
+    res.status(400).send({message:'Product not found'})
+   }
 })
 
 module.exports = router
