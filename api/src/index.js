@@ -13,7 +13,7 @@ connectDB()
 const app = express()
 app.use(express.json())
 
-//app.use(UserRoute)
+app.use('/users',UserRoute)
 app.use('/products', ProductRoute)
 
 app.use(notFound)

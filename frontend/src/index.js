@@ -8,11 +8,15 @@ import { applyMiddleware, compose, createStore } from 'redux'
 import reducers from './reducers'
 import thunk from 'redux-thunk'
 
+const userInfoFromStorage = localStorage.getItem('userInfo') ?
+JSON.parse(localStorage.getItem('userInfo')) : null;
+
 const cartItemFromStorage = localStorage.getItem('cartItems') ?
 JSON.parse(localStorage.getItem('cartItems')) : [];
 
 const initialState = {
-  cart: {cartItems: cartItemFromStorage}
+  cart: {cartItems: cartItemFromStorage},
+  auth : {userInfo: userInfoFromStorage}
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

@@ -29,7 +29,6 @@ const Cart = ({ match, location, history }) => {
   }
 
   const cartItems = useSelector((state) => state.cart.cartItems)
-  console.log(cartItems)
   return (
     <Row>
       <Col md={8}>
@@ -52,7 +51,7 @@ const Cart = ({ match, location, history }) => {
                   <Col md={2}>
                       ${item.price}
                   </Col>
-                  <Col md={2}>
+                  <Col md={3}>
                   {renderQuantityForm(item)}
                   </Col>
                   <Col md={2}>
@@ -67,11 +66,12 @@ const Cart = ({ match, location, history }) => {
         )}
       </Col>
       <Col md={4}>
+          {cartItems.length!=0?
           <Card>
               <ListGroup>
                   <ListGroup.Item>
                       <h2>Subtotal ({cartItems.reduce((acc,item)=> acc+item.qty,0)}) items</h2>
-                      ${cartItems.reduce((acc,item)=>acc+item.qty*item.price,0)}
+                      ${cartItems.reduce((acc,item)=>acc+item.qty*item.price,0).toFixed(2)}
                   </ListGroup.Item>
                   <ListGroup.Item>
                       <Button type="button" className="btn-block" disabled={cartItems.length===0}
@@ -82,6 +82,7 @@ const Cart = ({ match, location, history }) => {
               </ListGroup>
 
           </Card>
+          :null}
       </Col>
     </Row>
   )
