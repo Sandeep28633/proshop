@@ -66,7 +66,7 @@ const Cart = ({ match, location, history }) => {
         )}
       </Col>
       <Col md={4}>
-          {cartItems.length!=0?
+          {cartItems.length!==0?
           <Card>
               <ListGroup>
                   <ListGroup.Item>

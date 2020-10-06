@@ -94,7 +94,7 @@ const ProductScreen = ({ match, history }) => {
                   <Button
                     onClick={addToCard}
                     className='btn-block'
-                    disabled={product.countInStock == 0}
+                    disabled={product.countInStock === 0}
                   >
                     ADD TO CART
                   </Button>
