@@ -9,9 +9,6 @@ const Header = () => {
   const userLogin = useSelector((state) => state.auth)
   const { userInfo,error } = userLogin
 
-  if(error){
-    console.log(error.message)
-  }
   const logoutHandler =()=>{
     dispatch(logout(userInfo.token))
   }

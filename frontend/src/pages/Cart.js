@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import { addProductToCart, removeFromCart } from '../actions'
-import { Message } from '../components'
+import { Message ,Loader} from '../components'
 import { Link } from 'react-router-dom'
 
 const Cart = ({ match, location, history }) => {
   const dispatch = useDispatch()
+  const [isLoading, setLoading] = useState(false)
   const productId = match.params.id
   const qty = location.search ? Number(location.search.split('=')[1]) : 1
 
@@ -16,7 +17,8 @@ const Cart = ({ match, location, history }) => {
 
   const renderQuantityForm = ({countInStock,product,qty})=>{
     return (
-      <Form.Control as='select' value={qty} onChange={(e)=>dispatch(addProductToCart(product,Number(e.target.value)))}>
+      <Form.Control as='select' value={qty} onChange={(e)=>dispatch(addProductToCart(product,Number(e.target.value)))
+      }>
        { [...Array(countInStock).keys()].map(x=>(
         <option key={x+1}>{x+1}</option>
         ))}
@@ -74,7 +76,7 @@ const Cart = ({ match, location, history }) => {
                       ${cartItems.reduce((acc,item)=>acc+item.qty*item.price,0).toFixed(2)}
                   </ListGroup.Item>
                   <ListGroup.Item>
-                      <Button type="button" className="btn-block" disabled={cartItems.length===0}
+                      <Button type="button" className="btn-block" 
                       onClick={checkOutHandler}>
                           Proceed To Checkout
                       </Button>

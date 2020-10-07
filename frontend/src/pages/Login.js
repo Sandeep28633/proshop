@@ -13,7 +13,7 @@ const Login = ({ location, history }) => {
 
   const userLogin = useSelector((state) => state.auth)
   const { error, loading, userInfo } = userLogin
-  console.log(location)
+
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
   useEffect(() => {

@@ -13,7 +13,7 @@ const auth = async (req, res, next) => {
     req.user = user
     next()
   } catch (error) {
-    res.status(401).send("Please authethicate");
+    res.status(401).send({message:"Please authethicate"});
   }
 }
 
