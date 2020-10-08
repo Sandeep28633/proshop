@@ -6,11 +6,13 @@ const {
   getSignUp,
   logoutAll,
   updateUserProfile,
+  getUsers
 } = require('../controllers/userController')
-const auth = require('../middlewares/authMiddleware')
+const {auth, isAdmin} = require('../middlewares/authMiddleware')
 
 const router = express.Router()
 
+router.get('/',auth,isAdmin,getUsers)
 router.post('/', getSignUp)
 router.post('/login', getSignIn)
 router.post('/logoutAll', auth, logoutAll)

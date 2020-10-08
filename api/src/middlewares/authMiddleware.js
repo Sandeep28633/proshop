@@ -17,4 +17,18 @@ const auth = async (req, res, next) => {
   }
 }
 
-module.exports = auth
+const isAdmin = async(req,res,next)=>{
+  try {
+    if(req.user && req.user.isAdmin){
+      next()
+    }else{
+      res.status(401)
+      throw new Error('Not authorized as admin')
+    }
+  } catch (error) {
+    res.status(404).send({message:error.message})
+  }
+
+}
+
+module.exports = {isAdmin,auth}

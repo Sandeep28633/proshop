@@ -7,7 +7,7 @@ const {
   getMyOrders
 } = require('../controllers/OrderController')
 
-const auth = require('../middlewares/authMiddleware')
+const {auth} = require('../middlewares/authMiddleware')
 
 router.post('/createOrder', auth, createOrder)
 router.get('/myorders',auth,getMyOrders)

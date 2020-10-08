@@ -63,6 +63,15 @@ const logoutAll = async (req, res) => {
   }
 }
 
+const getUsers = async (req, res) => {
+  try {
+    const users = await User.find({})
+    res.send(users)
+  } catch (e) {
+    res.status(500).send({message:e.message})
+  }
+}
+
 // const updateUserProfile = async (req, res) => {
 //   const updates = Object.keys(req.body)
 //   const token = req.token
@@ -111,4 +120,5 @@ module.exports = {
   getSignUp,
   logoutAll,
   updateUserProfile,
+  getUsers
 }
