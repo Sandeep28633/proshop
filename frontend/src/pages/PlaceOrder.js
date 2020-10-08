@@ -76,8 +76,8 @@ const PlaceOrder = ({history}) => {
                         <Link to={`/product/${item.product}`}>{item.name}</Link>
                       </Col>
                       <Col md={4}>
-                        {item.qty} * ${item.price} = $
-                        {(item.qty * item.price).toFixed(2)}
+                        {item.qty} * <i className="fas fa-rupee-sign"></i>{item.price} = 
+                        <i className="fas fa-rupee-sign"></i>{(item.qty * item.price).toFixed(2)}
                       </Col>
                     </Row>
                   </ListGroup.Item>
@@ -95,28 +95,28 @@ const PlaceOrder = ({history}) => {
               <ListGroup.Item>
                 <Row>
                   <Col>Items</Col>
-                  <Col>${cart.ItemsPrice}</Col>
+                  <Col><i className="fas fa-rupee-sign"></i>{cart.ItemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
 
               <ListGroup.Item>
                 <Row>
                   <Col>Shipping</Col>
-                  <Col>${cart.shippingPrice}</Col>
+                  <Col><i className="fas fa-rupee-sign"></i>{cart.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
 
               <ListGroup.Item>
                 <Row>
                   <Col>Tax</Col>
-                  <Col>${cart.taxPrice}</Col>
+                  <Col><i className="fas fa-rupee-sign"></i>{cart.taxPrice}</Col>
                 </Row>
               </ListGroup.Item>
 
               <ListGroup.Item>
                 <Row>
                   <Col>Total</Col>
-                  <Col>${cart.totalPrice}</Col>
+                  <Col><i className="fas fa-rupee-sign"></i>{cart.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
 

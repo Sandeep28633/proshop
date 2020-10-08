@@ -2,18 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import { addProductToCart, removeFromCart } from '../actions'
-import { Message ,Loader} from '../components'
+import { Message } from '../components'
 import { Link } from 'react-router-dom'
 
 const Cart = ({ match, location, history }) => {
   const dispatch = useDispatch()
-  const [isLoading, setLoading] = useState(false)
   const productId = match.params.id
   const qty = location.search ? Number(location.search.split('=')[1]) : 1
 
   useEffect(() => {
     if (productId) dispatch(addProductToCart(productId, qty))
   }, [dispatch, productId, qty])
+  
+  const cartItems = useSelector((state) => state.cart.cartItems)
 
   const renderQuantityForm = ({countInStock,product,qty})=>{
     return (
@@ -30,7 +31,6 @@ const Cart = ({ match, location, history }) => {
       history.push('/login?redirect=shipping')
   }
 
-  const cartItems = useSelector((state) => state.cart.cartItems)
   return (
     <Row>
       <Col md={8}>
@@ -51,7 +51,7 @@ const Cart = ({ match, location, history }) => {
                     <Link to={`/product/${item.product}`}>{item.name}</Link>
                   </Col>
                   <Col md={2}>
-                      ${item.price}
+                  <i className="fas fa-rupee-sign"></i>{item.price}
                   </Col>
                   <Col md={3}>
                   {renderQuantityForm(item)}
@@ -73,7 +73,7 @@ const Cart = ({ match, location, history }) => {
               <ListGroup>
                   <ListGroup.Item>
                       <h2>Subtotal ({cartItems.reduce((acc,item)=> acc+item.qty,0)}) items</h2>
-                      ${cartItems.reduce((acc,item)=>acc+item.qty*item.price,0).toFixed(2)}
+                      <i className="fas fa-rupee-sign"></i>{cartItems.reduce((acc,item)=>acc+item.qty*item.price,0).toFixed(2)}
                   </ListGroup.Item>
                   <ListGroup.Item>
                       <Button type="button" className="btn-block" 

@@ -18,6 +18,8 @@ app.use('/users',UserRoute)
 app.use('/products', ProductRoute)
 app.use('/orders',OrderRoute)
 
+//route for sending paypal client id
+app.use('/config/paypal',(req,res)=>res.send(process.env.PAYPAL_CLIENT_ID))
 app.use(notFound)
 app.use(errorHandler)
 

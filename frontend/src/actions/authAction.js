@@ -3,7 +3,8 @@ import {
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
   USER_LOGOUT,
-  USER_LOGOUT_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_REGISTER_FAIL
+  USER_LOGOUT_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_REGISTER_FAIL,
+  USER_DETAILS_RESET, MY_ORDERS_RESET
 } from './types'
 import axios from 'axios'
 
@@ -46,6 +47,12 @@ export const logout = (token) =>async(dispatch)=>{
     localStorage.removeItem('userInfo')
     dispatch({
       type:USER_LOGOUT
+    })
+    dispatch({
+      type:MY_ORDERS_RESET
+    })
+    dispatch({
+      type:USER_DETAILS_RESET
     })
   } catch (error) {
     dispatch({

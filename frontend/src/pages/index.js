@@ -7,5 +7,6 @@ import Profile from './Profile';
 import Shipping from './Shipping';
 import Payment from './Payment';
 import PlaceOrder from './PlaceOrder';
+import Order from './Order'
 
-export {Home,ProductScreen,Cart,Login,Register,Profile,Shipping,Payment,PlaceOrder} 
+export {Home,ProductScreen,Cart,Login,Register,Profile,Shipping,Payment,PlaceOrder,Order} 

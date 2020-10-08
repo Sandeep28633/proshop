@@ -11,7 +11,8 @@ import {
   Profile,
   Shipping,
   Payment,
-  PlaceOrder
+  PlaceOrder,
+  Order
 } from './pages'
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
       <Header />
       <main className='py-3'>
         <Container>
+          <Route path='/order/:id' component={Order}/>
           <Route path='/placeorder' exact component={PlaceOrder}/>
           <Route path='/register'  exact component={Register} />
           <Route path='/login' exact component={Login} />

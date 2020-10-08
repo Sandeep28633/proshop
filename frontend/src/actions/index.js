@@ -2,7 +2,7 @@ import { getProducts, getProductDetails } from './productAction'
 import { addProductToCart, removeFromCart, SaveShippingAddres,SavePaymentMethod } from './cartAction'
 import { signIn, signUp, logout } from './authAction'
 import { getUserProfile,updateUserProfile } from './userAction'
-import {createOrder} from './orderAction'
+import {createOrder,getOrderDetails,payOrder,getMyOrders} from './orderAction'
 
 export {
   getProducts,
@@ -16,5 +16,8 @@ export {
   updateUserProfile,
   SaveShippingAddres,
   SavePaymentMethod,
-  createOrder
+  createOrder,
+  getOrderDetails,
+  payOrder,
+  getMyOrders
 }
