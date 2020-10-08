@@ -12,7 +12,8 @@ import {
   Shipping,
   Payment,
   PlaceOrder,
-  Order
+  Order,
+  UserList
 } from './pages'
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
           <Route path='/profile' exact component={Profile} />
           <Route path='/product/:id' component={ProductScreen} />
           <Route path='/cart/:id?' component={Cart} />
+          <Route path='/admin/users' component={UserList} />
           <Route path='/' exact component={Home} />
         </Container>
       </main>

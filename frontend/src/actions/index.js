@@ -1,7 +1,7 @@
 import { getProducts, getProductDetails } from './productAction'
 import { addProductToCart, removeFromCart, SaveShippingAddres,SavePaymentMethod } from './cartAction'
 import { signIn, signUp, logout } from './authAction'
-import { getUserProfile,updateUserProfile } from './userAction'
+import { getUserProfile,updateUserProfile,usersList } from './userAction'
 import {createOrder,getOrderDetails,payOrder,getMyOrders} from './orderAction'
 
 export {
@@ -19,5 +19,6 @@ export {
   createOrder,
   getOrderDetails,
   payOrder,
-  getMyOrders
+  getMyOrders,
+  usersList
 }

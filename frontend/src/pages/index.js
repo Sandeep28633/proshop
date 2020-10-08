@@ -8,5 +8,6 @@ import Shipping from './Shipping';
 import Payment from './Payment';
 import PlaceOrder from './PlaceOrder';
 import Order from './Order'
+import UserList from './UserList'
 
-export {Home,ProductScreen,Cart,Login,Register,Profile,Shipping,Payment,PlaceOrder,Order} 
+export {Home,ProductScreen,Cart,Login,Register,Profile,Shipping,Payment,PlaceOrder,Order,UserList} 

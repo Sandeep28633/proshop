@@ -68,3 +68,9 @@ export const MY_ORDERS_SUCCESS = 'MY_ORDERS_SUCCESS'
 export const MY_ORDERS_FAIL = 'MY_ORDERS_FAIL'
 export const MY_ORDERS_RESET = 'MY_ORDERS_RESET'
 
+
+//admin get users 
+export const USER_LIST_REQUEST = 'USER_LIST_REQUEST'
+export const USER_LIST_SUCCESS = 'USER_LIST_SUCCESS'
+export const USER_LIST_FAIL = 'USER_LIST_FAIL'
+export const USER_LIST_RESET = 'USER_LIST_RESET'
