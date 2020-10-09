@@ -6,7 +6,10 @@ const {
   getSignUp,
   logoutAll,
   updateUserProfile,
-  getUsers
+  getUsers,
+  deleteUser,
+  getUserById,
+  updateUserByAdmin
 } = require('../controllers/userController')
 const {auth, isAdmin} = require('../middlewares/authMiddleware')
 
@@ -19,5 +22,7 @@ router.post('/logoutAll', auth, logoutAll)
 router.post('/logout', auth, getSignOut)
 router.put('/profile', auth, updateUserProfile)
 router.get('/profile', auth, getProfile)
-
+router.delete('/:id',auth,isAdmin,deleteUser)
+router.get('/:id',auth,isAdmin,getUserById)
+router.put('/:id',auth,isAdmin,updateUserByAdmin)
 module.exports = router

@@ -72,6 +72,40 @@ const getUsers = async (req, res) => {
   }
 }
 
+
+const getUserById = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).select('-password')
+    if(user){
+      res.send(user)
+    }else{
+      res.status(401)
+      throw new Error('No user found')
+    }
+  } catch (e) {
+    res.status(500).send({message:e.message})
+  }
+}
+
+const updateUserByAdmin = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id)
+    if(user){
+      user.name = req.body.name || user.name
+      user.email = req.body.email || user.email
+      user.isAdmin = req.body.isAdmin
+      // if (req.body.password) {
+      //   user.password = req.body.password
+      // }
+    }
+
+    const updatedUser = await user.save()
+    res.send({ ...basicDetails(updatedUser) })
+  } catch (e) {
+    res.status(400).send({ message: e.message })
+  }
+}
+
 // const updateUserProfile = async (req, res) => {
 //   const updates = Object.keys(req.body)
 //   const token = req.token
@@ -108,6 +142,21 @@ const updateUserProfile = async (req, res) => {
   }
 }
 
+const deleteUser = async(req,res) =>{
+  try {
+    const user = await User.findById(req.params.id)
+    if(user){
+      await user.remove()
+      res.send({message:'user removed successfully'})
+    }else{
+      res.status(401)
+      throw new Error('No user found')
+    }
+  } catch (error) {
+      res.status(401).send({message:error.message})
+  }
+}
+
 const basicDetails = (user) => {
   const { _id, name, email, isAdmin } = user
   return { _id, name, email, isAdmin }
@@ -120,5 +169,8 @@ module.exports = {
   getSignUp,
   logoutAll,
   updateUserProfile,
-  getUsers
+  getUsers,
+  deleteUser,
+  updateUserByAdmin,
+  getUserById
 }

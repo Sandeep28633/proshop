@@ -9,5 +9,8 @@ import Payment from './Payment';
 import PlaceOrder from './PlaceOrder';
 import Order from './Order'
 import UserList from './UserList'
-
-export {Home,ProductScreen,Cart,Login,Register,Profile,Shipping,Payment,PlaceOrder,Order,UserList} 
+import UserEdit from './UserEdit'
+import ProductList from './ProductList'
+import ProductEdit from './ProductEdit'
+export {Home,ProductScreen,Cart,Login,Register,Profile,Shipping,Payment,PlaceOrder,Order,UserList,UserEdit,
+    ProductList,ProductEdit} 

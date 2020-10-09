@@ -1,10 +1,29 @@
-import { getProducts, getProductDetails } from './productAction'
-import { addProductToCart, removeFromCart, SaveShippingAddres,SavePaymentMethod } from './cartAction'
+import { getProducts, getProductDetails, createProduct, deleteProduct, updateProduct } from './productAction'
+import {
+  addProductToCart,
+  removeFromCart,
+  SaveShippingAddres,
+  SavePaymentMethod,
+} from './cartAction'
 import { signIn, signUp, logout } from './authAction'
-import { getUserProfile,updateUserProfile,usersList } from './userAction'
-import {createOrder,getOrderDetails,payOrder,getMyOrders} from './orderAction'
+import {
+  getUserProfile,
+  updateUserProfile,
+  usersList,
+  deleteUser,
+  updateUser,
+} from './userAction'
+import {
+  createOrder,
+  getOrderDetails,
+  payOrder,
+  getMyOrders,
+} from './orderAction'
 
 export {
+  createProduct, 
+  deleteProduct,
+   updateProduct,
   getProducts,
   getProductDetails,
   addProductToCart,
@@ -20,5 +39,8 @@ export {
   getOrderDetails,
   payOrder,
   getMyOrders,
-  usersList
+  usersList,
+  deleteUser,
+  updateUser,
+
 }

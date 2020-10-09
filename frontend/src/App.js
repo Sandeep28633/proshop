@@ -13,7 +13,10 @@ import {
   Payment,
   PlaceOrder,
   Order,
-  UserList
+  UserList,
+  UserEdit,
+  ProductList,
+  ProductEdit
 } from './pages'
 
 const App = () => {
@@ -32,6 +35,9 @@ const App = () => {
           <Route path='/product/:id' component={ProductScreen} />
           <Route path='/cart/:id?' component={Cart} />
           <Route path='/admin/users' component={UserList} />
+          <Route path='/admin/user/:id/edit' component={UserEdit} />
+          <Route path='/admin/products' component={ProductList}/>
+          <Route  path='/admin/product/:id/edit' component={ProductEdit}/>
           <Route path='/' exact component={Home} />
         </Container>
       </main>
