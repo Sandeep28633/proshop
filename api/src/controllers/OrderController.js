@@ -82,4 +82,30 @@ const getMyOrders = async (req, res) => {
    }
 }
 
-module.exports = {createOrder,getOrderById,updateOrderToPaid ,getMyOrders}
+const getMyOrdersForAdmin = async (req, res) => {
+  try {
+    const orders = await Order.find({}).populate('User','id name')
+    if (orders) {
+      return res.send(orders)
+    }
+    throw new Error('No orders found')
+  } catch (error) {
+    res.status(400).send({message:'Orders not found'})
+   }
+}
+
+const markAsDeliver = async(req,res)=>{
+  try {
+    const order = await Order.findById(req.params.id)
+    if (order) {
+      order.isDelivered = true
+      order.deliveredAt = Date.now()
+      const updatedOrder = await order.save()
+      return res.send(updatedOrder)
+    }
+    throw new Error('Order not found')
+  } catch (error) {
+    res.status(400).send({message:'Order not found'})
+  }
+}
+module.exports = {createOrder,getOrderById,updateOrderToPaid ,getMyOrders, getMyOrdersForAdmin,markAsDeliver}

@@ -18,11 +18,15 @@ const ProductEdit = ({ match, history }) => {
   const [category, setCategory] = useState('')
   const [countInStock, setCountInStock] = useState(0)
   const [description, setDescription] = useState('')
+  const [uploading, setUploading] = useState(false)
 
   const dispatch = useDispatch()
 
   const productDetails = useSelector((state) => state.productDetail)
   const { loading, error, product } = productDetails
+
+  const userData = useSelector((state) => state.auth)
+  const {userInfo : {token}} = userData
 
   const productUpdate = useSelector((state) => state.productUpdate)
   const {
@@ -50,28 +54,29 @@ const ProductEdit = ({ match, history }) => {
     }
   }, [dispatch, history, productId, product, successUpdate])
 
-//   const uploadFileHandler = async (e) => {
-//     const file = e.target.files[0]
-//     const formData = new FormData()
-//     formData.append('image', file)
-//     setUploading(true)
+  const uploadFileHandler = async (e) => {
+    const file = e.target.files[0]
+    const formData = new FormData()
+    formData.append('image', file)
+    setUploading(true)
 
-//     try {
-//       const config = {
-//         headers: {
-//           'Content-Type': 'multipart/form-data',
-//         },
-//       }
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Authorization' : `Bearer ${token}`
+        },
+      }
 
-//       const { data } = await axios.post('/api/upload', formData, config)
+      const { data } = await axios.post('/upload', formData, config)
 
-//       setImage(data)
-//       setUploading(false)
-//     } catch (error) {
-//       console.error(error)
-//       setUploading(false)
-//     }
-//   }
+      setImage(data)
+      setUploading(false)
+    } catch (error) {
+      console.error(error)
+      setUploading(false)
+    }
+  }
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -124,7 +129,7 @@ const ProductEdit = ({ match, history }) => {
               ></Form.Control>
             </Form.Group>
 
-            {/* <Form.Group controlId='image'>
+            <Form.Group controlId='image'>
               <Form.Label>Image</Form.Label>
               <Form.Control
                 type='text'
@@ -139,7 +144,7 @@ const ProductEdit = ({ match, history }) => {
                 onChange={uploadFileHandler}
               ></Form.File>
               {uploading && <Loader />}
-            </Form.Group> */}
+            </Form.Group>
 
             <Form.Group controlId='brand'>
               <Form.Label>Brand</Form.Label>

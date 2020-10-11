@@ -18,6 +18,8 @@ import {
   getOrderDetails,
   payOrder,
   getMyOrders,
+  getAdminOrder,
+  markOrderAsDeliver
 } from './orderAction'
 
 export {
@@ -37,6 +39,8 @@ export {
   SavePaymentMethod,
   createOrder,
   getOrderDetails,
+  markOrderAsDeliver,
+  getAdminOrder,
   payOrder,
   getMyOrders,
   usersList,

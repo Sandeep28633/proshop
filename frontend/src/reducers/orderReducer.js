@@ -11,7 +11,8 @@ import {
   ORDER_PAY_RESET,
   MY_ORDERS_FAIL,
   MY_ORDERS_REQUEST,
-  MY_ORDERS_SUCCESS, MY_ORDERS_RESET
+  ORDER_DELIVER_RESET,
+  MY_ORDERS_SUCCESS, MY_ORDERS_RESET, ORDER_LIST_REQUEST, ORDER_LIST_FAIL, ORDER_LIST_SUCCESS, ORDER_DELIVER_REQUEST, ORDER_DELIVER_SUCCESS, ORDER_DELIVER_FAIL
 } from '../actions/types'
 
 export const createOrderReducer = (state = {}, action) => {
@@ -66,6 +67,34 @@ export const getMyOrdersReducer = (state = { orders : [] },action)=>{
       return { loading: false, error: action.payload }
     case MY_ORDERS_RESET:
       return {orders:[]}
+    default:
+      return state
+  }
+}
+
+export const getAdminOrdersReducer = (state = { orders : [] },action)=>{
+  switch (action.type) {
+    case ORDER_LIST_REQUEST:
+      return { loading: true }
+    case ORDER_LIST_SUCCESS:
+      return { loading: false, orders : action.payload }
+    case ORDER_LIST_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
+
+export const markAsDeliveredReducer = (state = { },action)=>{
+  switch (action.type) {
+    case ORDER_DELIVER_REQUEST:
+      return { loading: true }
+    case ORDER_DELIVER_SUCCESS:
+      return { loading: false, success : true }
+    case ORDER_DELIVER_FAIL:
+      return { loading: false, error: action.payload }
+    case ORDER_DELIVER_RESET:
+      return {}
     default:
       return state
   }

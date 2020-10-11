@@ -12,5 +12,7 @@ import UserList from './UserList'
 import UserEdit from './UserEdit'
 import ProductList from './ProductList'
 import ProductEdit from './ProductEdit'
+import OrderList from './OrderList'
+
 export {Home,ProductScreen,Cart,Login,Register,Profile,Shipping,Payment,PlaceOrder,Order,UserList,UserEdit,
-    ProductList,ProductEdit} 
+    ProductList,ProductEdit,OrderList} 

@@ -1,9 +1,31 @@
 import { combineReducers } from 'redux'
 import { cartReducer } from './cartReducer'
-import { productDetailsReducer, productReducer, productCreateReducer, productUpdateReducer,productDeleteReducer } from './productReducer'
+import {
+  productDetailsReducer,
+  productReducer,
+  productCreateReducer,
+  productUpdateReducer,
+  productDeleteReducer,
+} from './productReducer'
+
 import { userLoginReducer, userRegisterReducer } from './authReducer'
-import { getProfileReducer, updateUserProfileReducer ,userListReducer,userDeleteReducer, userUpdateReducer} from './userReducer'
-import {createOrderReducer,getOrderReducer,orderPayReducer,getMyOrdersReducer} from './orderReducer'
+
+import {
+  getProfileReducer,
+  updateUserProfileReducer,
+  userListReducer,
+  userDeleteReducer,
+  userUpdateReducer,
+} from './userReducer'
+
+import {
+  createOrderReducer,
+  getOrderReducer,
+  orderPayReducer,
+  getMyOrdersReducer,
+  getAdminOrdersReducer,
+  markAsDeliveredReducer,
+} from './orderReducer'
 
 export default combineReducers({
   productList: productReducer,
@@ -17,10 +39,12 @@ export default combineReducers({
   userProfile: getProfileReducer,
   updatedProfile: updateUserProfileReducer,
   orderCreate: createOrderReducer,
-  orderDetails:getOrderReducer,
-  orderPay:orderPayReducer,
-  myOrders:getMyOrdersReducer,
-  usersList:userListReducer,
-  userDelete:userDeleteReducer,
-  userUpdate:userUpdateReducer
+  orderDetails: getOrderReducer,
+  orderPay: orderPayReducer,
+  adminOrders: getAdminOrdersReducer,
+  markDeliverd:markAsDeliveredReducer,
+  myOrders: getMyOrdersReducer,
+  usersList: userListReducer,
+  userDelete: userDeleteReducer,
+  userUpdate: userUpdateReducer,
 })
