@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import {Message,Loader} from '../components'
+import {Message,Loader,Paginate} from '../components'
 import {
   getProducts,
   deleteProduct,
@@ -46,7 +46,7 @@ const ProductList = ({ history, match }) => {
     if (successCreate) {
       history.push(`/admin/product/${createdProduct._id}/edit`)
     } else {
-      dispatch(getProducts())
+      dispatch(getProducts('',pageNumber))
     }
   }, [
     dispatch,
@@ -127,7 +127,7 @@ const ProductList = ({ history, match }) => {
               ))}
             </tbody>
           </Table>
-          {/* <Paginate pages={pages} page={page} isAdmin={true} /> */}
+          <Paginate pages={pages} page={page} isAdmin={true} />
         </>
       )}
     </>

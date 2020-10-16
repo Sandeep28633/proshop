@@ -6,6 +6,8 @@ import {
   productCreateReducer,
   productUpdateReducer,
   productDeleteReducer,
+  createProductReview,
+  productTopRatedReducer
 } from './productReducer'
 
 import { userLoginReducer, userRegisterReducer } from './authReducer'
@@ -33,6 +35,8 @@ export default combineReducers({
   productDelete: productDeleteReducer,
   productCreate: productCreateReducer,
   productUpdate: productUpdateReducer,
+  productTopRated:productTopRatedReducer,
+  productReview:createProductReview,
   cart: cartReducer,
   auth: userLoginReducer,
   register: userRegisterReducer,

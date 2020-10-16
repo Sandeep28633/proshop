@@ -18,6 +18,7 @@ import {
   ProductList,
   ProductEdit,
   OrderList,
+  SearchBox
 } from './pages'
 
 const App = () => {
@@ -37,9 +38,17 @@ const App = () => {
           <Route path='/cart/:id?' component={Cart} />
           <Route path='/admin/users' component={UserList} />
           <Route path='/admin/user/:id/edit' component={UserEdit} />
-          <Route path='/admin/products' component={ProductList} />
+          <Route path='/admin/products' component={ProductList} exact/>
+          <Route path='/admin/products/:pageNumber' component={ProductList} exact />
           <Route path='/admin/product/:id/edit' component={ProductEdit} />
           <Route path='/admin/orders' component={OrderList} />
+          <Route path='/search/:keyword'  component={Home} exact/>
+          <Route path='/page/:pageNumber' component={Home} exact />
+          <Route
+            path='/search/:keyword/page/:pageNumber'
+            component={Home}
+            exact
+          />
           <Route path='/' exact component={Home} />
         </Container>
       </main>

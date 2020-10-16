@@ -1,4 +1,4 @@
-import { getProducts, getProductDetails, createProduct, deleteProduct, updateProduct } from './productAction'
+import { getProducts, getProductDetails, createProduct, deleteProduct, updateProduct,createProductReview,listTopProducts } from './productAction'
 import {
   addProductToCart,
   removeFromCart,
@@ -46,5 +46,6 @@ export {
   usersList,
   deleteUser,
   updateUser,
-
+  createProductReview,
+  listTopProducts
 }
