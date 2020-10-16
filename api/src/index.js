@@ -26,6 +26,14 @@ app.use('/upload', uploadRoute)
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 //route for sending paypal client id
 app.use('/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_ID))
+
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static(path.join(__dirname,'../../frontend/build')))
+  app.use('*',(req,res)=>{
+    res.sendFile(path.join(__dirname,'/frontend/build/index.html'))
+  })
+}
+
 app.use(notFound)
 app.use(errorHandler)
 
