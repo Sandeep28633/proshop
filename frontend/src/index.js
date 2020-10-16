@@ -1,45 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
-import './index.css'
-import './bootstrap.min.css'
 import { Provider } from 'react-redux'
-import { applyMiddleware, compose, createStore } from 'redux'
-import reducers from './reducers'
-import thunk from 'redux-thunk'
-
-const paymentMethodFromLocalStorage = localStorage.getItem('paymentMethod')
-  ? JSON.parse(localStorage.getItem('paymentMethod'))
-  : {}
-
-
-const shippingAddressFromLocalStorage = localStorage.getItem('shippingAddress')
-  ? JSON.parse(localStorage.getItem('shippingAddress'))
-  : {}
-
-const userInfoFromStorage = localStorage.getItem('userInfo')
-  ? JSON.parse(localStorage.getItem('userInfo'))
-  : null
-
-const cartItemFromStorage = localStorage.getItem('cartItems')
-  ? JSON.parse(localStorage.getItem('cartItems'))
-  : []
-
-const initialState = {
-  cart: {
-    cartItems: cartItemFromStorage,
-    shippingAddress: shippingAddressFromLocalStorage,
-    paymentMethod :paymentMethodFromLocalStorage
-  },
-  auth: { userInfo: userInfoFromStorage },
-}
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-const store = createStore(
-  reducers,
-  initialState,
-  composeEnhancers(applyMiddleware(thunk))
-)
+import store from './store'
+import './bootstrap.min.css'
+import './index.css'
+import App from './App'
+import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -47,3 +13,8 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 )
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister()

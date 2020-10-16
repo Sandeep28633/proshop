@@ -1,25 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Alert } from 'react-bootstrap'
 
-const Message = ({ variant = 'info',isDismissible=true, children }) => {
-  const [show, setShow] = useState(true)
+const Message = ({ variant, children }) => {
+  return <Alert variant={variant}>{children}</Alert>
+}
 
-  const renderAlert = () =>{
-    if (show) { 
-      if(isDismissible){
-        return (<Alert variant={variant} onClose={() => setShow(false)} dismissible>
-        {children}
-      </Alert>)
-      }else{
-        return (<Alert variant={variant} onClose={() => setShow(false)} >
-        {children}
-      </Alert>)
-      }
-
-      }
-  }
-
-  return <>{renderAlert()}</>
+Message.defaultProps = {
+  variant: 'info',
 }
 
 export default Message

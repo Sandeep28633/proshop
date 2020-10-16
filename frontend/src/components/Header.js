@@ -1,22 +1,23 @@
 import React from 'react'
-import { Navbar, Nav, Container,NavDropdown} from 'react-bootstrap'
 import { Route } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
-import { useSelector ,useDispatch} from 'react-redux'
-import {logout} from '../actions'
-import {SearchBox} from '../components'
+import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
+import SearchBox from './SearchBox'
+import { logout } from '../actions/userActions'
 
 const Header = () => {
   const dispatch = useDispatch()
-  const userLogin = useSelector((state) => state.auth)
-  const { userInfo,error } = userLogin
 
-  const logoutHandler =()=>{
-    dispatch(logout(userInfo.token))
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
+
+  const logoutHandler = () => {
+    dispatch(logout())
   }
 
   return (
-    <>
+    <header>
       <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
         <Container>
           <LinkContainer to='/'>
@@ -24,7 +25,7 @@ const Header = () => {
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
-          <Route render={({ history }) => <SearchBox history={history} />} />
+            <Route render={({ history }) => <SearchBox history={history} />} />
             <Nav className='ml-auto'>
               <LinkContainer to='/cart'>
                 <Nav.Link>
@@ -34,7 +35,7 @@ const Header = () => {
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id='username'>
                   <LinkContainer to='/profile'>
-                  <NavDropdown.Item >Profile</NavDropdown.Item>
+                    <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler}>
                     Logout
@@ -48,23 +49,23 @@ const Header = () => {
                 </LinkContainer>
               )}
               {userInfo && userInfo.isAdmin && (
-                <NavDropdown title='Admin' id='adminmeny'>
-                  <LinkContainer to='/admin/users'>
-                  <NavDropdown.Item >Users</NavDropdown.Item>
+                <NavDropdown title='Admin' id='adminmenu'>
+                  <LinkContainer to='/admin/userlist'>
+                    <NavDropdown.Item>Users</NavDropdown.Item>
                   </LinkContainer>
-                  <LinkContainer to='/admin/products'>
-                  <NavDropdown.Item >Products</NavDropdown.Item>
+                  <LinkContainer to='/admin/productlist'>
+                    <NavDropdown.Item>Products</NavDropdown.Item>
                   </LinkContainer>
-                  <LinkContainer to='/admin/orders'>
-                  <NavDropdown.Item >orders</NavDropdown.Item>
+                  <LinkContainer to='/admin/orderlist'>
+                    <NavDropdown.Item>Orders</NavDropdown.Item>
                   </LinkContainer>
                 </NavDropdown>
-              ) }
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    </>
+    </header>
   )
 }
 
